@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mobile.dao.SellerMapper" >
+  <resultMap id="BaseResultMap" type="com.mobile.pojo.Seller" >
+    <constructor >
+      <idArg column="Seller_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="seller_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Seller_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="joiner_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Seller_sex" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="Seller_card" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Seller_cardnum" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="Seller_remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Seller_date" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="Seller_loc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Seller_id, seller_phone, Seller_name, joiner_id, user_id, Seller_sex, Seller_card, 
+    Seller_cardnum, Seller_remark, Seller_date, Seller_loc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from seller
+    where Seller_id = #{sellerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seller
+    where Seller_id = #{sellerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mobile.pojo.Seller" >
+    insert into seller (Seller_id, seller_phone, Seller_name, 
+      joiner_id, user_id, Seller_sex, 
+      Seller_card, Seller_cardnum, Seller_remark, 
+      Seller_date, Seller_loc)
+    values (#{sellerId,jdbcType=INTEGER}, #{sellerPhone,jdbcType=VARCHAR}, #{sellerName,jdbcType=VARCHAR}, 
+      #{joinerId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{sellerSex,jdbcType=CHAR}, 
+      #{sellerCard,jdbcType=VARCHAR}, #{sellerCardnum,jdbcType=CHAR}, #{sellerRemark,jdbcType=VARCHAR}, 
+      #{sellerDate,jdbcType=DATE}, #{sellerLoc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mobile.pojo.Seller" >
+    insert into seller
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sellerId != null" >
+        Seller_id,
+      </if>
+      <if test="sellerPhone != null" >
+        seller_phone,
+      </if>
+      <if test="sellerName != null" >
+        Seller_name,
+      </if>
+      <if test="joinerId != null" >
+        joiner_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="sellerSex != null" >
+        Seller_sex,
+      </if>
+      <if test="sellerCard != null" >
+        Seller_card,
+      </if>
+      <if test="sellerCardnum != null" >
+        Seller_cardnum,
+      </if>
+      <if test="sellerRemark != null" >
+        Seller_remark,
+      </if>
+      <if test="sellerDate != null" >
+        Seller_date,
+      </if>
+      <if test="sellerLoc != null" >
+        Seller_loc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerPhone != null" >
+        #{sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerId != null" >
+        #{joinerId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerSex != null" >
+        #{sellerSex,jdbcType=CHAR},
+      </if>
+      <if test="sellerCard != null" >
+        #{sellerCard,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerCardnum != null" >
+        #{sellerCardnum,jdbcType=CHAR},
+      </if>
+      <if test="sellerRemark != null" >
+        #{sellerRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerDate != null" >
+        #{sellerDate,jdbcType=DATE},
+      </if>
+      <if test="sellerLoc != null" >
+        #{sellerLoc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mobile.pojo.Seller" >
+    update seller
+    <set >
+      <if test="sellerPhone != null" >
+        seller_phone = #{sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        Seller_name = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerId != null" >
+        joiner_id = #{joinerId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sellerSex != null" >
+        Seller_sex = #{sellerSex,jdbcType=CHAR},
+      </if>
+      <if test="sellerCard != null" >
+        Seller_card = #{sellerCard,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerCardnum != null" >
+        Seller_cardnum = #{sellerCardnum,jdbcType=CHAR},
+      </if>
+      <if test="sellerRemark != null" >
+        Seller_remark = #{sellerRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerDate != null" >
+        Seller_date = #{sellerDate,jdbcType=DATE},
+      </if>
+      <if test="sellerLoc != null" >
+        Seller_loc = #{sellerLoc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Seller_id = #{sellerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mobile.pojo.Seller" >
+    update seller
+    set seller_phone = #{sellerPhone,jdbcType=VARCHAR},
+      Seller_name = #{sellerName,jdbcType=VARCHAR},
+      joiner_id = #{joinerId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      Seller_sex = #{sellerSex,jdbcType=CHAR},
+      Seller_card = #{sellerCard,jdbcType=VARCHAR},
+      Seller_cardnum = #{sellerCardnum,jdbcType=CHAR},
+      Seller_remark = #{sellerRemark,jdbcType=VARCHAR},
+      Seller_date = #{sellerDate,jdbcType=DATE},
+      Seller_loc = #{sellerLoc,jdbcType=VARCHAR}
+    where Seller_id = #{sellerId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mobile.dao.JoLeverMapper" >
+  <resultMap id="BaseResultMap" type="com.mobile.pojo.JoLever" >
+    <constructor >
+      <idArg column="jo_level_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="jo_level_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="jo_level_explain" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    jo_level_id, jo_level_name, jo_level_explain
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jo_level
+    where jo_level_id = #{joLevelId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jo_level
+    where jo_level_id = #{joLevelId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mobile.pojo.JoLever" >
+    insert into jo_level (jo_level_id, jo_level_name, jo_level_explain
+      )
+    values (#{joLevelId,jdbcType=INTEGER}, #{joLevelName,jdbcType=VARCHAR}, #{joLevelExplain,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mobile.pojo.JoLever" >
+    insert into jo_level
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="joLevelId != null" >
+        jo_level_id,
+      </if>
+      <if test="joLevelName != null" >
+        jo_level_name,
+      </if>
+      <if test="joLevelExplain != null" >
+        jo_level_explain,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="joLevelId != null" >
+        #{joLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="joLevelName != null" >
+        #{joLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="joLevelExplain != null" >
+        #{joLevelExplain,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mobile.pojo.JoLever" >
+    update jo_level
+    <set >
+      <if test="joLevelName != null" >
+        jo_level_name = #{joLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="joLevelExplain != null" >
+        jo_level_explain = #{joLevelExplain,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where jo_level_id = #{joLevelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mobile.pojo.JoLever" >
+    update jo_level
+    set jo_level_name = #{joLevelName,jdbcType=VARCHAR},
+      jo_level_explain = #{joLevelExplain,jdbcType=VARCHAR}
+    where jo_level_id = #{joLevelId,jdbcType=INTEGER}
+  </update>
+</mapper>

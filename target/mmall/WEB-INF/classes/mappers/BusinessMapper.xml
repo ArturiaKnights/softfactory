@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mobile.dao.BusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.mobile.pojo.Business" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Seller_phone" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="Cus_phone" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="Pro_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bus_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Bus_open" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="Bus_close" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="Seller_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="bus_status" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, Seller_phone, Cus_phone, Pro_name, bus_type, Bus_open, Bus_close, Seller_id, 
+    bus_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from business
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from business
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mobile.pojo.Business" >
+    insert into business (id, Seller_phone, Cus_phone, 
+      Pro_name, bus_type, Bus_open, 
+      Bus_close, Seller_id, bus_status
+      )
+    values (#{id,jdbcType=INTEGER}, #{sellerPhone,jdbcType=CHAR}, #{cusPhone,jdbcType=CHAR}, 
+      #{proName,jdbcType=VARCHAR}, #{busType,jdbcType=VARCHAR}, #{busOpen,jdbcType=DATE}, 
+      #{busClose,jdbcType=DATE}, #{sellerId,jdbcType=INTEGER}, #{busStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mobile.pojo.Business" >
+    insert into business
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sellerPhone != null" >
+        Seller_phone,
+      </if>
+      <if test="cusPhone != null" >
+        Cus_phone,
+      </if>
+      <if test="proName != null" >
+        Pro_name,
+      </if>
+      <if test="busType != null" >
+        bus_type,
+      </if>
+      <if test="busOpen != null" >
+        Bus_open,
+      </if>
+      <if test="busClose != null" >
+        Bus_close,
+      </if>
+      <if test="sellerId != null" >
+        Seller_id,
+      </if>
+      <if test="busStatus != null" >
+        bus_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sellerPhone != null" >
+        #{sellerPhone,jdbcType=CHAR},
+      </if>
+      <if test="cusPhone != null" >
+        #{cusPhone,jdbcType=CHAR},
+      </if>
+      <if test="proName != null" >
+        #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="busType != null" >
+        #{busType,jdbcType=VARCHAR},
+      </if>
+      <if test="busOpen != null" >
+        #{busOpen,jdbcType=DATE},
+      </if>
+      <if test="busClose != null" >
+        #{busClose,jdbcType=DATE},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="busStatus != null" >
+        #{busStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mobile.pojo.Business" >
+    update business
+    <set >
+      <if test="sellerPhone != null" >
+        Seller_phone = #{sellerPhone,jdbcType=CHAR},
+      </if>
+      <if test="cusPhone != null" >
+        Cus_phone = #{cusPhone,jdbcType=CHAR},
+      </if>
+      <if test="proName != null" >
+        Pro_name = #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="busType != null" >
+        bus_type = #{busType,jdbcType=VARCHAR},
+      </if>
+      <if test="busOpen != null" >
+        Bus_open = #{busOpen,jdbcType=DATE},
+      </if>
+      <if test="busClose != null" >
+        Bus_close = #{busClose,jdbcType=DATE},
+      </if>
+      <if test="sellerId != null" >
+        Seller_id = #{sellerId,jdbcType=INTEGER},
+      </if>
+      <if test="busStatus != null" >
+        bus_status = #{busStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mobile.pojo.Business" >
+    update business
+    set Seller_phone = #{sellerPhone,jdbcType=CHAR},
+      Cus_phone = #{cusPhone,jdbcType=CHAR},
+      Pro_name = #{proName,jdbcType=VARCHAR},
+      bus_type = #{busType,jdbcType=VARCHAR},
+      Bus_open = #{busOpen,jdbcType=DATE},
+      Bus_close = #{busClose,jdbcType=DATE},
+      Seller_id = #{sellerId,jdbcType=INTEGER},
+      bus_status = #{busStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mobile.dao.OrganMapper" >
+  <resultMap id="BaseResultMap" type="com.mobile.pojo.Organ" >
+    <constructor >
+      <idArg column="organ_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="organ_heigh" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="organ_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="organ_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="organ_loc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="organ_dir" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="organ_linkman" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="organ_phone" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="organ_explain" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    organ_id, organ_heigh, organ_name, organ_type, organ_loc, organ_dir, organ_linkman, 
+    organ_phone, organ_explain
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from organ
+    where organ_id = #{organId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from organ
+    where organ_id = #{organId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mobile.pojo.Organ" >
+    insert into organ (organ_id, organ_heigh, organ_name, 
+      organ_type, organ_loc, organ_dir, 
+      organ_linkman, organ_phone, organ_explain
+      )
+    values (#{organId,jdbcType=INTEGER}, #{organHeigh,jdbcType=VARCHAR}, #{organName,jdbcType=VARCHAR}, 
+      #{organType,jdbcType=VARCHAR}, #{organLoc,jdbcType=VARCHAR}, #{organDir,jdbcType=VARCHAR}, 
+      #{organLinkman,jdbcType=VARCHAR}, #{organPhone,jdbcType=CHAR}, #{organExplain,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mobile.pojo.Organ" >
+    insert into organ
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="organId != null" >
+        organ_id,
+      </if>
+      <if test="organHeigh != null" >
+        organ_heigh,
+      </if>
+      <if test="organName != null" >
+        organ_name,
+      </if>
+      <if test="organType != null" >
+        organ_type,
+      </if>
+      <if test="organLoc != null" >
+        organ_loc,
+      </if>
+      <if test="organDir != null" >
+        organ_dir,
+      </if>
+      <if test="organLinkman != null" >
+        organ_linkman,
+      </if>
+      <if test="organPhone != null" >
+        organ_phone,
+      </if>
+      <if test="organExplain != null" >
+        organ_explain,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="organId != null" >
+        #{organId,jdbcType=INTEGER},
+      </if>
+      <if test="organHeigh != null" >
+        #{organHeigh,jdbcType=VARCHAR},
+      </if>
+      <if test="organName != null" >
+        #{organName,jdbcType=VARCHAR},
+      </if>
+      <if test="organType != null" >
+        #{organType,jdbcType=VARCHAR},
+      </if>
+      <if test="organLoc != null" >
+        #{organLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="organDir != null" >
+        #{organDir,jdbcType=VARCHAR},
+      </if>
+      <if test="organLinkman != null" >
+        #{organLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="organPhone != null" >
+        #{organPhone,jdbcType=CHAR},
+      </if>
+      <if test="organExplain != null" >
+        #{organExplain,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mobile.pojo.Organ" >
+    update organ
+    <set >
+      <if test="organHeigh != null" >
+        organ_heigh = #{organHeigh,jdbcType=VARCHAR},
+      </if>
+      <if test="organName != null" >
+        organ_name = #{organName,jdbcType=VARCHAR},
+      </if>
+      <if test="organType != null" >
+        organ_type = #{organType,jdbcType=VARCHAR},
+      </if>
+      <if test="organLoc != null" >
+        organ_loc = #{organLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="organDir != null" >
+        organ_dir = #{organDir,jdbcType=VARCHAR},
+      </if>
+      <if test="organLinkman != null" >
+        organ_linkman = #{organLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="organPhone != null" >
+        organ_phone = #{organPhone,jdbcType=CHAR},
+      </if>
+      <if test="organExplain != null" >
+        organ_explain = #{organExplain,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where organ_id = #{organId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mobile.pojo.Organ" >
+    update organ
+    set organ_heigh = #{organHeigh,jdbcType=VARCHAR},
+      organ_name = #{organName,jdbcType=VARCHAR},
+      organ_type = #{organType,jdbcType=VARCHAR},
+      organ_loc = #{organLoc,jdbcType=VARCHAR},
+      organ_dir = #{organDir,jdbcType=VARCHAR},
+      organ_linkman = #{organLinkman,jdbcType=VARCHAR},
+      organ_phone = #{organPhone,jdbcType=CHAR},
+      organ_explain = #{organExplain,jdbcType=VARCHAR}
+    where organ_id = #{organId,jdbcType=INTEGER}
+  </update>
+</mapper>

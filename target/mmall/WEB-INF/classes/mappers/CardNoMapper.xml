@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mobile.dao.CardNoMapper" >
+  <resultMap id="BaseResultMap" type="com.mobile.pojo.CardNo" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="firstNO" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="middleNO" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="endNo" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="joinerId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sellerId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="flag" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, firstNO, middleNO, endNo, joinerId, sellerId, flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cardno
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cardno
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mobile.pojo.CardNo" >
+    insert into cardno (id, firstNO, middleNO, 
+      endNo, joinerId, sellerId, 
+      flag)
+    values (#{id,jdbcType=INTEGER}, #{firstno,jdbcType=INTEGER}, #{middleno,jdbcType=INTEGER}, 
+      #{endno,jdbcType=INTEGER}, #{joinerid,jdbcType=INTEGER}, #{sellerid,jdbcType=INTEGER}, 
+      #{flag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mobile.pojo.CardNo" >
+    insert into cardno
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="firstno != null" >
+        firstNO,
+      </if>
+      <if test="middleno != null" >
+        middleNO,
+      </if>
+      <if test="endno != null" >
+        endNo,
+      </if>
+      <if test="joinerid != null" >
+        joinerId,
+      </if>
+      <if test="sellerid != null" >
+        sellerId,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="firstno != null" >
+        #{firstno,jdbcType=INTEGER},
+      </if>
+      <if test="middleno != null" >
+        #{middleno,jdbcType=INTEGER},
+      </if>
+      <if test="endno != null" >
+        #{endno,jdbcType=INTEGER},
+      </if>
+      <if test="joinerid != null" >
+        #{joinerid,jdbcType=INTEGER},
+      </if>
+      <if test="sellerid != null" >
+        #{sellerid,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mobile.pojo.CardNo" >
+    update cardno
+    <set >
+      <if test="firstno != null" >
+        firstNO = #{firstno,jdbcType=INTEGER},
+      </if>
+      <if test="middleno != null" >
+        middleNO = #{middleno,jdbcType=INTEGER},
+      </if>
+      <if test="endno != null" >
+        endNo = #{endno,jdbcType=INTEGER},
+      </if>
+      <if test="joinerid != null" >
+        joinerId = #{joinerid,jdbcType=INTEGER},
+      </if>
+      <if test="sellerid != null" >
+        sellerId = #{sellerid,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mobile.pojo.CardNo" >
+    update cardno
+    set firstNO = #{firstno,jdbcType=INTEGER},
+      middleNO = #{middleno,jdbcType=INTEGER},
+      endNo = #{endno,jdbcType=INTEGER},
+      joinerId = #{joinerid,jdbcType=INTEGER},
+      sellerId = #{sellerid,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

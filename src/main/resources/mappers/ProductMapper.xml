@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mobile.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.mobile.pojo.Product" >
+    <constructor >
+      <idArg column="pro_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="pro_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Pro_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Pro_cost" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Pro_loc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Pro_img" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Pro_first" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="Pro_month" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="Pro_link" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Pro_out" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Pro_status" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="Pro_date" jdbcType="DATE" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pro_id, pro_name, Pro_type, Pro_cost, Pro_loc, Pro_img, Pro_first, Pro_month, Pro_link, 
+    Pro_out, Pro_status, Pro_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mobile.pojo.Product" >
+    insert into product (pro_id, pro_name, Pro_type, 
+      Pro_cost, Pro_loc, Pro_img, 
+      Pro_first, Pro_month, Pro_link, 
+      Pro_out, Pro_status, Pro_date
+      )
+    values (#{proId,jdbcType=INTEGER}, #{proName,jdbcType=VARCHAR}, #{proType,jdbcType=VARCHAR}, 
+      #{proCost,jdbcType=VARCHAR}, #{proLoc,jdbcType=VARCHAR}, #{proImg,jdbcType=VARCHAR}, 
+      #{proFirst,jdbcType=DOUBLE}, #{proMonth,jdbcType=DOUBLE}, #{proLink,jdbcType=VARCHAR}, 
+      #{proOut,jdbcType=VARCHAR}, #{proStatus,jdbcType=CHAR}, #{proDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mobile.pojo.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proId != null" >
+        pro_id,
+      </if>
+      <if test="proName != null" >
+        pro_name,
+      </if>
+      <if test="proType != null" >
+        Pro_type,
+      </if>
+      <if test="proCost != null" >
+        Pro_cost,
+      </if>
+      <if test="proLoc != null" >
+        Pro_loc,
+      </if>
+      <if test="proImg != null" >
+        Pro_img,
+      </if>
+      <if test="proFirst != null" >
+        Pro_first,
+      </if>
+      <if test="proMonth != null" >
+        Pro_month,
+      </if>
+      <if test="proLink != null" >
+        Pro_link,
+      </if>
+      <if test="proOut != null" >
+        Pro_out,
+      </if>
+      <if test="proStatus != null" >
+        Pro_status,
+      </if>
+      <if test="proDate != null" >
+        Pro_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proId != null" >
+        #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="proName != null" >
+        #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="proType != null" >
+        #{proType,jdbcType=VARCHAR},
+      </if>
+      <if test="proCost != null" >
+        #{proCost,jdbcType=VARCHAR},
+      </if>
+      <if test="proLoc != null" >
+        #{proLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="proImg != null" >
+        #{proImg,jdbcType=VARCHAR},
+      </if>
+      <if test="proFirst != null" >
+        #{proFirst,jdbcType=DOUBLE},
+      </if>
+      <if test="proMonth != null" >
+        #{proMonth,jdbcType=DOUBLE},
+      </if>
+      <if test="proLink != null" >
+        #{proLink,jdbcType=VARCHAR},
+      </if>
+      <if test="proOut != null" >
+        #{proOut,jdbcType=VARCHAR},
+      </if>
+      <if test="proStatus != null" >
+        #{proStatus,jdbcType=CHAR},
+      </if>
+      <if test="proDate != null" >
+        #{proDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mobile.pojo.Product" >
+    update product
+    <set >
+      <if test="proName != null" >
+        pro_name = #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="proType != null" >
+        Pro_type = #{proType,jdbcType=VARCHAR},
+      </if>
+      <if test="proCost != null" >
+        Pro_cost = #{proCost,jdbcType=VARCHAR},
+      </if>
+      <if test="proLoc != null" >
+        Pro_loc = #{proLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="proImg != null" >
+        Pro_img = #{proImg,jdbcType=VARCHAR},
+      </if>
+      <if test="proFirst != null" >
+        Pro_first = #{proFirst,jdbcType=DOUBLE},
+      </if>
+      <if test="proMonth != null" >
+        Pro_month = #{proMonth,jdbcType=DOUBLE},
+      </if>
+      <if test="proLink != null" >
+        Pro_link = #{proLink,jdbcType=VARCHAR},
+      </if>
+      <if test="proOut != null" >
+        Pro_out = #{proOut,jdbcType=VARCHAR},
+      </if>
+      <if test="proStatus != null" >
+        Pro_status = #{proStatus,jdbcType=CHAR},
+      </if>
+      <if test="proDate != null" >
+        Pro_date = #{proDate,jdbcType=DATE},
+      </if>
+    </set>
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mobile.pojo.Product" >
+    update product
+    set pro_name = #{proName,jdbcType=VARCHAR},
+      Pro_type = #{proType,jdbcType=VARCHAR},
+      Pro_cost = #{proCost,jdbcType=VARCHAR},
+      Pro_loc = #{proLoc,jdbcType=VARCHAR},
+      Pro_img = #{proImg,jdbcType=VARCHAR},
+      Pro_first = #{proFirst,jdbcType=DOUBLE},
+      Pro_month = #{proMonth,jdbcType=DOUBLE},
+      Pro_link = #{proLink,jdbcType=VARCHAR},
+      Pro_out = #{proOut,jdbcType=VARCHAR},
+      Pro_status = #{proStatus,jdbcType=CHAR},
+      Pro_date = #{proDate,jdbcType=DATE}
+    where pro_id = #{proId,jdbcType=INTEGER}
+  </update>
+</mapper>

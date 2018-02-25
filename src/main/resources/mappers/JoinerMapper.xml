@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mobile.dao.JoinerMapper" >
+  <resultMap id="BaseResultMap" type="com.mobile.pojo.Joiner" >
+    <constructor >
+      <idArg column="joiner_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="joiner_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="organ_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="joiner_loc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="joiner_linkname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="joiner_phone" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="joiner_email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="joiner_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="joiner_bank" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="joiner_holder" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="joiner_banknum" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="joiner_explain" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="jo_level_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="jo_heigher_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="joiner_date" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="joiner_status" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="joiner_remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    joiner_id, joiner_name, organ_id, joiner_loc, joiner_linkname, joiner_phone, joiner_email, 
+    joiner_address, joiner_bank, joiner_holder, joiner_banknum, joiner_explain, jo_level_id, 
+    jo_heigher_id, joiner_date, user_id, joiner_status, joiner_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from joiner
+    where joiner_id = #{joinerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from joiner
+    where joiner_id = #{joinerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mobile.pojo.Joiner" >
+    insert into joiner (joiner_id, joiner_name, organ_id, 
+      joiner_loc, joiner_linkname, joiner_phone, 
+      joiner_email, joiner_address, joiner_bank, 
+      joiner_holder, joiner_banknum, joiner_explain, 
+      jo_level_id, jo_heigher_id, joiner_date, 
+      user_id, joiner_status, joiner_remark
+      )
+    values (#{joinerId,jdbcType=INTEGER}, #{joinerName,jdbcType=VARCHAR}, #{organId,jdbcType=INTEGER}, 
+      #{joinerLoc,jdbcType=VARCHAR}, #{joinerLinkname,jdbcType=VARCHAR}, #{joinerPhone,jdbcType=CHAR}, 
+      #{joinerEmail,jdbcType=VARCHAR}, #{joinerAddress,jdbcType=VARCHAR}, #{joinerBank,jdbcType=VARCHAR}, 
+      #{joinerHolder,jdbcType=VARCHAR}, #{joinerBanknum,jdbcType=VARCHAR}, #{joinerExplain,jdbcType=VARCHAR}, 
+      #{joLevelId,jdbcType=INTEGER}, #{joHeigherId,jdbcType=INTEGER}, #{joinerDate,jdbcType=DATE}, 
+      #{userId,jdbcType=INTEGER}, #{joinerStatus,jdbcType=CHAR}, #{joinerRemark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mobile.pojo.Joiner" >
+    insert into joiner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="joinerId != null" >
+        joiner_id,
+      </if>
+      <if test="joinerName != null" >
+        joiner_name,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+      <if test="joinerLoc != null" >
+        joiner_loc,
+      </if>
+      <if test="joinerLinkname != null" >
+        joiner_linkname,
+      </if>
+      <if test="joinerPhone != null" >
+        joiner_phone,
+      </if>
+      <if test="joinerEmail != null" >
+        joiner_email,
+      </if>
+      <if test="joinerAddress != null" >
+        joiner_address,
+      </if>
+      <if test="joinerBank != null" >
+        joiner_bank,
+      </if>
+      <if test="joinerHolder != null" >
+        joiner_holder,
+      </if>
+      <if test="joinerBanknum != null" >
+        joiner_banknum,
+      </if>
+      <if test="joinerExplain != null" >
+        joiner_explain,
+      </if>
+      <if test="joLevelId != null" >
+        jo_level_id,
+      </if>
+      <if test="joHeigherId != null" >
+        jo_heigher_id,
+      </if>
+      <if test="joinerDate != null" >
+        joiner_date,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="joinerStatus != null" >
+        joiner_status,
+      </if>
+      <if test="joinerRemark != null" >
+        joiner_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="joinerId != null" >
+        #{joinerId,jdbcType=INTEGER},
+      </if>
+      <if test="joinerName != null" >
+        #{joinerName,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=INTEGER},
+      </if>
+      <if test="joinerLoc != null" >
+        #{joinerLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerLinkname != null" >
+        #{joinerLinkname,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerPhone != null" >
+        #{joinerPhone,jdbcType=CHAR},
+      </if>
+      <if test="joinerEmail != null" >
+        #{joinerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerAddress != null" >
+        #{joinerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerBank != null" >
+        #{joinerBank,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerHolder != null" >
+        #{joinerHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerBanknum != null" >
+        #{joinerBanknum,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerExplain != null" >
+        #{joinerExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="joLevelId != null" >
+        #{joLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="joHeigherId != null" >
+        #{joHeigherId,jdbcType=INTEGER},
+      </if>
+      <if test="joinerDate != null" >
+        #{joinerDate,jdbcType=DATE},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="joinerStatus != null" >
+        #{joinerStatus,jdbcType=CHAR},
+      </if>
+      <if test="joinerRemark != null" >
+        #{joinerRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mobile.pojo.Joiner" >
+    update joiner
+    <set >
+      <if test="joinerName != null" >
+        joiner_name = #{joinerName,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=INTEGER},
+      </if>
+      <if test="joinerLoc != null" >
+        joiner_loc = #{joinerLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerLinkname != null" >
+        joiner_linkname = #{joinerLinkname,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerPhone != null" >
+        joiner_phone = #{joinerPhone,jdbcType=CHAR},
+      </if>
+      <if test="joinerEmail != null" >
+        joiner_email = #{joinerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerAddress != null" >
+        joiner_address = #{joinerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerBank != null" >
+        joiner_bank = #{joinerBank,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerHolder != null" >
+        joiner_holder = #{joinerHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerBanknum != null" >
+        joiner_banknum = #{joinerBanknum,jdbcType=VARCHAR},
+      </if>
+      <if test="joinerExplain != null" >
+        joiner_explain = #{joinerExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="joLevelId != null" >
+        jo_level_id = #{joLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="joHeigherId != null" >
+        jo_heigher_id = #{joHeigherId,jdbcType=INTEGER},
+      </if>
+      <if test="joinerDate != null" >
+        joiner_date = #{joinerDate,jdbcType=DATE},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="joinerStatus != null" >
+        joiner_status = #{joinerStatus,jdbcType=CHAR},
+      </if>
+      <if test="joinerRemark != null" >
+        joiner_remark = #{joinerRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where joiner_id = #{joinerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mobile.pojo.Joiner" >
+    update joiner
+    set joiner_name = #{joinerName,jdbcType=VARCHAR},
+      organ_id = #{organId,jdbcType=INTEGER},
+      joiner_loc = #{joinerLoc,jdbcType=VARCHAR},
+      joiner_linkname = #{joinerLinkname,jdbcType=VARCHAR},
+      joiner_phone = #{joinerPhone,jdbcType=CHAR},
+      joiner_email = #{joinerEmail,jdbcType=VARCHAR},
+      joiner_address = #{joinerAddress,jdbcType=VARCHAR},
+      joiner_bank = #{joinerBank,jdbcType=VARCHAR},
+      joiner_holder = #{joinerHolder,jdbcType=VARCHAR},
+      joiner_banknum = #{joinerBanknum,jdbcType=VARCHAR},
+      joiner_explain = #{joinerExplain,jdbcType=VARCHAR},
+      jo_level_id = #{joLevelId,jdbcType=INTEGER},
+      jo_heigher_id = #{joHeigherId,jdbcType=INTEGER},
+      joiner_date = #{joinerDate,jdbcType=DATE},
+      user_id = #{userId,jdbcType=INTEGER},
+      joiner_status = #{joinerStatus,jdbcType=CHAR},
+      joiner_remark = #{joinerRemark,jdbcType=VARCHAR}
+    where joiner_id = #{joinerId,jdbcType=INTEGER}
+  </update>
+</mapper>

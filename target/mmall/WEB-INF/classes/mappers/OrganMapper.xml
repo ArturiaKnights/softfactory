@@ -14,20 +14,24 @@
       <arg column="organ_explain" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
+
   <sql id="Base_Column_List" >
     organ_id, organ_heigh, organ_name, organ_type, organ_loc, organ_dir, organ_linkman, 
     organ_phone, organ_explain
   </sql>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from organ
     where organ_id = #{organId,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from organ
     where organ_id = #{organId,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.mobile.pojo.Organ" >
     insert into organ (organ_id, organ_heigh, organ_name, 
       organ_type, organ_loc, organ_dir, 
@@ -38,6 +42,7 @@
       #{organLinkman,jdbcType=VARCHAR}, #{organPhone,jdbcType=CHAR}, #{organExplain,jdbcType=VARCHAR}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.mobile.pojo.Organ" >
     insert into organ
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -99,6 +104,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.mobile.pojo.Organ" >
     update organ
     <set >
@@ -129,6 +135,7 @@
     </set>
     where organ_id = #{organId,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.mobile.pojo.Organ" >
     update organ
     set organ_heigh = #{organHeigh,jdbcType=VARCHAR},
@@ -141,4 +148,12 @@
       organ_explain = #{organExplain,jdbcType=VARCHAR}
     where organ_id = #{organId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectHighLevelOrgan" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM organ
+    WHERE organ_id = #{organHeighId}
+  </select>
+
 </mapper>

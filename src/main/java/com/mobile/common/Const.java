@@ -18,7 +18,7 @@ public class Const {
         SYS_USER(2,"普通用户");
 
         private int code;
-        private String desc;//说明
+        private String desc;
 
         Role(int code, String desc) {
             this.code = code;
@@ -33,6 +33,8 @@ public class Const {
             return desc;
         }
     }
+
+
 
 
 

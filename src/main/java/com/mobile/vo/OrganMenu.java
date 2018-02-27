@@ -1,5 +1,6 @@
 package com.mobile.vo;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import java.io.Serializable;
@@ -7,6 +8,9 @@ import java.util.List;
 
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class OrganMenu implements Serializable{
+
+    @JsonIgnore
+    private Integer OrganId;
 
     private String name;
 
@@ -28,6 +32,9 @@ public class OrganMenu implements Serializable{
         this.spread = spread;
         this.href = href;
         this.children = children;
+    }
+
+    public OrganMenu() {
     }
 
     public String getName() {
@@ -60,5 +67,13 @@ public class OrganMenu implements Serializable{
 
     public void setChildren(List<OrganMenu> children) {
         this.children = children;
+    }
+
+    public Integer getOrganId() {
+        return OrganId;
+    }
+
+    public void setOrganId(Integer organId) {
+        OrganId = organId;
     }
 }

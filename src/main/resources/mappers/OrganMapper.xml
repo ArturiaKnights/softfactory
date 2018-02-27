@@ -149,4 +149,26 @@
     where organ_id = #{organId,jdbcType=INTEGER}
   </update>
 
+  <select id="selectParentNodeByHeighId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM organ
+    WHERE organ_id = #{organHeighId}
+  </select>
+
+  <select id="selectParallerChildNodeList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM organ
+    WHERE organ_heigh = #{organId}
+  </select>
+
+  <select id="selectRootAndParallerChildNodeList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM organ
+    WHERE organ_heigh = #{organId}
+    OR organ_heigh = null;
+  </select>
+
 </mapper>

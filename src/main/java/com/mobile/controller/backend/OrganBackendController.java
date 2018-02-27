@@ -9,6 +9,7 @@ import com.mobile.service.IOrganService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -72,10 +73,18 @@ public class OrganBackendController {
      * 根据父节点查找所有平行子节点
      * @return
      */
-    public ServerResponse getChildParallerNodes(Integer organId){
+    @RequestMapping(value = "loadAllMenu.do")
+    @ResponseBody
+    public ServerResponse loadAllMenu(HttpSession session,@RequestParam(value = "organId",defaultValue = "0") Integer organId){
 
+        SysUser user = (SysUser) session.getAttribute(Const.CURRENT_USER);
 
+        if(user == null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDesc());
+        }
 
+        //todo 检查是否管理员身份
+        return iOrganService.loadAllMenu(organId);
     }
 
 

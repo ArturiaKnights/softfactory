@@ -10,7 +10,7 @@ import java.util.List;
 public class OrganMenu implements Serializable{
 
     @JsonIgnore
-    private Integer OrganId;
+    private Integer organId;
 
     private String name;
 
@@ -70,10 +70,21 @@ public class OrganMenu implements Serializable{
     }
 
     public Integer getOrganId() {
-        return OrganId;
+        return organId;
     }
 
     public void setOrganId(Integer organId) {
-        OrganId = organId;
+        this.organId = organId;
+    }
+
+    @Override
+    public String toString() {
+        return "OrganMenu{" +
+                "organId=" + organId +
+                ", name='" + name + '\'' +
+                ", spread='" + spread + '\'' +
+                ", href='" + href + '\'' +
+                ", children=" + children +
+                '}';
     }
 }

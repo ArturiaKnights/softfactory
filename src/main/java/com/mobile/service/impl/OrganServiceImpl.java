@@ -12,6 +12,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -120,13 +121,45 @@ public class OrganServiceImpl implements IOrganService {
     }
 
     private List<OrganMenu> getOrganMenuList(Integer organId, List<Organ> organs, List<OrganMenu> organMenus) {
-        Organ parentOrgan = organMapper.selectByPrimaryKey(organId);
-        organs = organMapper.selectParallerChildNodeList(organId);
-
-        for (Organ organ : organs) {
-
+        //不为根节点
+        if(organId != 0) {
+            Organ parentOrgan = organMapper.selectByPrimaryKey(organId);
+            organs.add(parentOrgan);
+        }else{
+            organs = organMapper.selectParallerChildNodeList(organId);
         }
-        return null;
+        for (Organ organ : organs) {
+            OrganMenu menu = new OrganMenu();
+            menu.setOrganId(organ.getOrganId());
+            System.out.println("根节点的id   :"+organ.getOrganId());
+            menu = getDeepNodes(organ,menu);
+
+            organMenus.add(menu);
+            System.out.println("deep后最终的menu   ："+menu.toString());
+        }
+        return organMenus;
+    }
+
+    private OrganMenu getDeepNodes(Organ organ,OrganMenu menu){
+        List<Organ> organsChildren = organMapper.selectParallerChildNodeList(menu.getOrganId());
+
+        menu = assembleOrganMenu(organ,organsChildren);
+
+//        for(OrganMenu organMenu :menu.getChildren()){
+//            organ = organMapper.selectByPrimaryKey(organMenu.getOrganId());
+//            getDeepNodes(organ,organMenu);
+//        }
+
+        if(!CollectionUtils.isEmpty(menu.getChildren())){
+            for(int i=0;i<menu.getChildren().size();i++){
+                OrganMenu organMenu = menu.getChildren().get(i);
+                organ = organMapper.selectByPrimaryKey(organMenu.getOrganId());
+                getDeepNodes(organ,organMenu);
+            }
+        }
+
+
+        return menu;
     }
 
 
@@ -134,17 +167,24 @@ public class OrganServiceImpl implements IOrganService {
         OrganMenu organMenu = new OrganMenu();
         organMenu.setName(parentOrgan.getOrganName());
         organMenu.setSpread("false");
+        organMenu.setOrganId(parentOrgan.getOrganId());
+
         //todo 数据库缺失href字段
 
         List<OrganMenu> organList = Lists.newArrayList();
         for (Organ organ : childOrganList) {
             OrganMenu tempMenu = new OrganMenu();
 
-            tempMenu.setName(parentOrgan.getOrganName());
+            tempMenu.setOrganId(organ.getOrganId());
+            tempMenu.setName(organ.getOrganName());
             tempMenu.setSpread("false");
+
             organList.add(tempMenu);
         }
-        organMenu.setChildren(organList);
+
+            organMenu.setChildren(organList);
+
+        System.out.println("转换一次完成后的organMenu  :"+ organMenu.toString());
         return organMenu;
     }
 }

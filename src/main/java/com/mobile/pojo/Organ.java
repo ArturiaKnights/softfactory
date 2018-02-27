@@ -106,4 +106,19 @@ public class Organ {
     public void setOrganExplain(String organExplain) {
         this.organExplain = organExplain == null ? null : organExplain.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Organ{" +
+                "organId=" + organId +
+                ", organHeigh='" + organHeigh + '\'' +
+                ", organName='" + organName + '\'' +
+                ", organType='" + organType + '\'' +
+                ", organLoc='" + organLoc + '\'' +
+                ", organDir='" + organDir + '\'' +
+                ", organLinkman='" + organLinkman + '\'' +
+                ", organPhone='" + organPhone + '\'' +
+                ", organExplain='" + organExplain + '\'' +
+                '}';
+    }
 }
